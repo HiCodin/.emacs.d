@@ -1,0 +1,10 @@
+/config.el
+/auto-save-list/
+/backups/
+/elpa/
+/emacs-async/
+/eshell/
+/recentf
+/srecode-map.el
+/places
+/window-numbering/
