@@ -13,7 +13,7 @@ Setup the customize settings to its own file.
 
 #+BEGIN_SRC emacs-lisp
 (use-package window-numbering
-   :load-path "~/.emacs.d/window-numbering"
+   :ensure t
    :init 
    (window-numbering-mode 1)
    :pin manual)
@@ -102,7 +102,7 @@ My own configurations for spaceline.
 
 #+BEGIN_SRC emacs-lisp
 (use-package async
-   :load-path "~/.emacs.d/emacs-async")
+   :ensure t)
 
 (use-package helm
    :ensure t
