@@ -3,6 +3,9 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
+(setq initial-scratch-message "")
+(defun display-startup-echo-area-message ()
+  (message "Let the hacking begin!"))
 
 (require 'package)
 (setq package-enable-at-startup nil)

@@ -17,13 +17,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(cursor ((t (:background "mediumslateblue"))))
  '(helm-ff-directory ((t (:foreground "light salmon"))))
  '(helm-ff-dotted-directory ((t (:foreground "DimGray"))))
  '(helm-match ((t (:foreground "OrangeRed2"))))
- '(helm-selection ((t (:background "medium slate blue" :foreground "white"))))
+ '(helm-selection ((t (:background "Gray25"))))
+ '(helm-selection-line ((t (:inherit highlight :background "Gray25"))))
  '(helm-source-header ((t (:foreground "chocolate1" :weight normal :height 1.2 :width normal :family "Sans Serif"))))
- '(spaceline-modified ((t (:background "chocolate1" :foreground "White" ))))
+ '(mode-line-buffer-id ((t nil)))
+ '(spaceline-modified ((t (:background "chocolate1" :foreground "White"))))
  '(spaceline-read-only ((t (:background "tomato1" :foreground "White"))))
  '(spaceline-unmodified ((t (:background "LimeGreen" :foreground "White")))))
 

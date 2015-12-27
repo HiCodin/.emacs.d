@@ -15,8 +15,7 @@ Setup the customize settings to its own file.
 (use-package window-numbering
    :ensure t
    :init 
-   (window-numbering-mode 1)
-   :pin manual)
+   (window-numbering-mode 1))
 #+END_SRC
 
 * Theme 
@@ -52,21 +51,44 @@ My own configurations for spaceline.
    (setq spaceline-separator-dir-left '(left . right))
    (setq spaceline-separator-dir-right '(right . left))
 
+   (spaceline-define-segment helm-buffer-id
+   "Helm session identifier."
+      (propertize
+       (let ((custom (cdr (assoc (buffer-name) spaceline--helm-buffer-ids)))
+         (case-fold-search t)
+         (name (replace-regexp-in-string "-" " " (buffer-name))))
+     (if custom custom
+       (string-match "\\*helm:? \\(mode \\)?\\([^\\*]+\\)\\*" name)
+       (concat "HELM " (capitalize (match-string 2 name))))))
+   :face highlight-face
+   :when (bound-and-true-p helm-alive-p))
+
+   (spaceline-define-segment helm-help
+   "Helm keybindings help."
+      (-interleave
+       (mapcar (lambda (s)
+             (propertize (substitute-command-keys s) ))
+              '("\\<helm-map>\\[helm-help]"
+             "\\<helm-map>\\[helm-select-action]"
+             "\\<helm-map>\\[helm-maybe-exit-minibuffer]/F1/F2..."))
+       '("(help)" "(actions)" "(action)"))
+  :when (bound-and-true-p helm-alive-p))
+
    (spaceline-define-segment version-control
     "Version control information."
     (powerline-raw
     (s-trim (concat vc-mode
           (when (buffer-file-name)
              (pcase (vc-state (buffer-file-name))
-                          (`up-to-date " [✔]")
-                          (`edited " [Modified]")
-                          (`added " [Added]")
-                          (`unregistered " [??]")
-                          (`removed " [Removed]")
-                          (`needs-merge " [Merge]")
-                          (`needs-update " [Update]")
-                          (`ignored " [Ignored]")
-                          (_ " [Unknown]"))))))
+                          (`up-to-date " ")
+                          (`edited " !")
+                          (`added " ")
+                          (`unregistered " ")
+                          (`removed " ")
+                          (`needs-merge " ")
+                          (`needs-update " ")
+                          (`ignored " ")
+                          (_ ""))))))
         :when vc-mode)
 
    :config
@@ -94,10 +116,20 @@ My own configurations for spaceline.
      hud))
    (setq spaceline-highlight-face-func 'spaceline-highlight-face-modified))
 
-
+(defadvice vc-mode-line (after strip-backend () activate)
+    (when (stringp vc-mode)
+      (let ((gitlogo (replace-regexp-in-string "^ Git." "  " vc-mode)))
+        (setq vc-mode gitlogo))))
 
 #+END_SRC
 
+* Magit
+#+BEGIN_SRC emacs-lisp
+(use-package magit
+    :ensure t
+    :init
+    (bind-key "C-x g" 'magit-status))
+#+END_SRC
 * Helm
 
 #+BEGIN_SRC emacs-lisp
@@ -125,6 +157,7 @@ My own configurations for spaceline.
       
       (helm-mode))
    :config
+   (add-hook 'helm-update-hook (lambda () (setq cursor-in-non-selected-windows nil)))
    (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ;; rebind tab to run persistent action
    (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
    (define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
@@ -134,32 +167,12 @@ My own configurations for spaceline.
    (setq helm-autoresize-min-height 30)
    :bind (("C-c h" . helm-command-prefix)
           ("C-x b" . helm-mini)
-          ("C-x rb" . helm-bookmarks)
+          ("C-x r b" . helm-bookmarks)
           ("C-x C-f" . helm-find-files)
           ("C-c h o" . helm-occur)
           ("M-x" . helm-M-x)
           ("M-y" . helm-show-kill-ring)))
           
-
-;;(require 'helm-config)
-
-;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
-;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
-;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
-;;(global-set-key (kbd "C-c h") 'helm-command-prefix)
-;;(global-unset-key (kbd "C-x c"))
-
-
-;;; Helm-fy everything! This package is awesome
-;;(global-set-key (kbd "C-x b") 'helm-mini)
-;;(global-set-key (kbd "C-x r b") 'helm-bookmarks)
-;;(global-set-key (kbd "M-x") 'helm-M-x)
-;;(global-set-key (kbd "M-y") 'helm-show-kill-ring)
-;;(global-set-key (kbd "C-x C-f") 'helm-find-files)
-;;(global-set-key (kbd "C-c h o") 'helm-occur)
-
-
-;;(helm-mode 1)
 #+END_SRC
 * Diminish
 
@@ -180,6 +193,11 @@ My own configurations for spaceline.
    (bind-key "C-c a" 'org-agenda)
    (progn
    (setq org-log-done t)))
+#+END_SRC
+* Language specific
+** Haskell
+#+BEGIN_SRC emacs-lisp
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 #+END_SRC
 * General Config
 ** Enable UTF-8
@@ -218,7 +236,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 ** Cursor related 
 
 #+BEGIN_SRC emacs-lisp
-
 (blink-cursor-mode 0)
 
 ;; a function for inserting new line above the cursor position
@@ -258,6 +275,10 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
                                         nil)))
 #+END_SRC
 *** Extra settings
+**** font
+#+BEGIN_SRC emacs-lisp
+(set-face-attribute 'default nil :font "Monaco-11")
+#+END_SRC
 **** iBuffer
 #+BEGIN_SRC emacs-lisp
 (defalias 'list-buffers 'ibuffer)
@@ -297,10 +318,4 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
    kept-old-versions 2
    version-control t) 
 (setq auto-save-default nil) ; stop creating #autosave# files
-#+END_SRC
-**** Change startup echo message and disable scratch message
-#+BEGIN_SRC emacs-lisp
-(setq initial-scratch-message "")
-(defun display-startup-echo-area-message ()
-  (message "Let the hacking begin!"))
 #+END_SRC
