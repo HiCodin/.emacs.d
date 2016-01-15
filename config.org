@@ -1,8 +1,7 @@
 #+TITLE: Emacs Config
 #+AUTHOR: HICODIN
 
-* Customize Settings
-Setup the customize settings to its own file.
+* Separate file for Customize settings
 
 #+BEGIN_SRC emacs-lisp
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -20,6 +19,7 @@ Setup the customize settings to its own file.
 
 * Theme 
 ** Odersky Theme
+
 #+BEGIN_SRC emacs-lisp
 (use-package sublime-themes
    :ensure t
@@ -52,11 +52,9 @@ My own configurations for spaceline.
    :ensure t
    :init
    (require 'spaceline-config)
-   (setq powerline-default-separator 'arrow)
+   (setq powerline-default-separator 'alternate)
    (setq spaceline-window-numbers-unicode t)
    (setq spaceline-workspace-numbers-unicode t)
-   (setq spaceline-separator-dir-left '(left . right))
-   (setq spaceline-separator-dir-right '(right . left))
 
    (spaceline-define-segment helm-buffer-id
    "Helm session identifier."
@@ -131,6 +129,7 @@ My own configurations for spaceline.
 #+END_SRC
 
 * Magit
+
 #+BEGIN_SRC emacs-lisp
 (use-package magit
     :ensure t
@@ -145,7 +144,7 @@ My own configurations for spaceline.
 
 (use-package helm
    :ensure t
-   :diminish helm-mode "ⓗ"
+   :diminish helm-mode
    :init 
    (progn
       (require 'helm-config)
@@ -179,21 +178,22 @@ My own configurations for spaceline.
           ("C-c h o" . helm-occur)
           ("M-x" . helm-M-x)
           ("M-y" . helm-show-kill-ring)))
-          
 #+END_SRC
+
 * Diminish
 
 #+BEGIN_SRC emacs-lisp
 (use-package diminish
    :ensure t
    :init 
-   (diminish 'undo-tree-mode "ⓤ")
-   (diminish 'isearch-mode "ⓘ")
+   (diminish 'undo-tree-mode )
+   (diminish 'isearch-mode )
    (diminish 'visual-line-mode )
    (add-hook 'emacs-lisp-mode-hook 
    (lambda()
       (setq mode-name "el"))) )
 #+END_SRC
+
 * Org-Mode
 
 #+BEGIN_SRC emacs-lisp
@@ -205,7 +205,7 @@ My own configurations for spaceline.
    (progn
    (setq org-log-done t)))
 #+END_SRC
-#+END_SRC
+
 * Language specific
 ** Web Mode
 
@@ -213,6 +213,7 @@ My own configurations for spaceline.
 (use-package web-mode
    :ensure t)
 #+END_SRC
+
 ** Haskell
 
 #+BEGIN_SRC emacs-lisp
@@ -221,6 +222,7 @@ My own configurations for spaceline.
    :init 
    (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation))
 #+END_SRC
+
 ** Markdown
 
 #+BEGIN_SRC emacs-lisp
@@ -229,12 +231,14 @@ My own configurations for spaceline.
   :mode (("\\.markdown\\'" . markdown-mode)
          ("\\.md\\'"       . markdown-mode)))
 #+END_SRC
+
 ** YAML
 
 #+BEGIN_SRC emacs-lisp
 (use-package yaml-mode
    :ensure t)
 #+END_SRC
+
 * General Config
 ** Enable UTF-8
 

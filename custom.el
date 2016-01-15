@@ -11,7 +11,7 @@
    [unspecified "#151515" "#fb9fb1" "#acc267" "#ddb26f" "#6fc2ef" "#e1a3ee" "#6fc2ef" "#d0d0d0"])
  '(evil-echo-state nil)
  '(paradox-github-token t)
- '(powerline-height 22))
+ '(powerline-height 23))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
