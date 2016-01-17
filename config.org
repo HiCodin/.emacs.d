@@ -23,7 +23,9 @@
 #+BEGIN_SRC emacs-lisp
 (use-package sublime-themes
    :ensure t
-   :init (load-theme 'odersky t))
+   :init 
+   (load-theme 'odersky t)
+   (set-face-attribute 'fringe nil :background (face-background 'default) :foreground (face-foreground 'default)))
 #+END_SRC
 
 * Evil
@@ -317,7 +319,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 *** Extra settings
 **** font
 #+BEGIN_SRC emacs-lisp
-(set-face-attribute 'default nil :font "Monaco-11")
+(set-face-attribute 'default nil :font "MonacoB-11")
 #+END_SRC
 **** iBuffer
 #+BEGIN_SRC emacs-lisp
