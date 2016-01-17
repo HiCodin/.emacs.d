@@ -190,6 +190,7 @@ My own configurations for spaceline.
    :init 
    (diminish 'undo-tree-mode )
    (diminish 'isearch-mode )
+   (diminish 'auto-revert-mode)
    (diminish 'visual-line-mode )
    (add-hook 'emacs-lisp-mode-hook 
    (lambda()
