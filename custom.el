@@ -8,8 +8,11 @@
  '(ansi-color-names-vector
    ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
  '(ansi-term-color-vector
-   [unspecified "#151515" "#fb9fb1" "#acc267" "#ddb26f" "#6fc2ef" "#e1a3ee" "#6fc2ef" "#d0d0d0"])
+   [unspecified "#151515" "#fb9fb1" "#acc267" "#ddb26f" "#6fc2ef" "#e1a3ee" "#6fc2ef" "#d0d0d0"] t)
  '(evil-echo-state nil)
+ '(package-selected-packages
+   (quote
+    (paradox yaml-mode markdown-mode haskell-mode web-mode helm magit spaceline evil sublime-themes window-numbering use-package)))
  '(paradox-github-token t)
  '(powerline-height 23))
 (custom-set-faces
