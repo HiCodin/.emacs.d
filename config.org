@@ -213,7 +213,18 @@ My own configurations for spaceline.
    (progn
    (setq org-log-done t)))
 #+END_SRC
+  
+* Company Mode
+#+BEGIN_SRC emacs-lisp
 
+(use-package company
+   :ensure t
+   :diminish company-mode
+   :config
+   (global-company-mode)
+)
+
+#+END_SRC
 * Language specific
 ** Web Mode
 

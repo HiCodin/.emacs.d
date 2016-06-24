@@ -12,7 +12,7 @@
  '(evil-echo-state nil)
  '(package-selected-packages
    (quote
-    (paradox yaml-mode markdown-mode haskell-mode web-mode helm magit spaceline evil sublime-themes window-numbering use-package)))
+    (company paradox yaml-mode markdown-mode haskell-mode web-mode helm magit spaceline evil sublime-themes window-numbering use-package)))
  '(paradox-github-token t)
  '(powerline-height 23))
 (custom-set-faces
