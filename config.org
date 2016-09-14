@@ -18,16 +18,15 @@
 #+END_SRC
 
 * Theme 
-** Odersky Theme
+** Darktooth Theme
 
 #+BEGIN_SRC emacs-lisp
-(use-package sublime-themes
+( use-package darktooth-theme
    :ensure t
    :init 
-   (load-theme 'odersky t)
-   (set-face-attribute 'fringe nil :background (face-background 'default) :foreground (face-foreground 'default)))
+   (load-theme 'darktooth t))
 #+END_SRC
-
+ 
 * Evil
 
 #+BEGIN_SRC emacs-lisp
@@ -45,7 +44,46 @@
   (setq-default evil-cross-lines t)
   (evil-set-initial-state 'paradox-menu-mode 'emacs))
 #+END_SRC
+  
+* Evil-Leader
+#+BEGIN_SRC emacs-lisp
+(use-package evil-leader
+  :ensure t
+  :init
+  (global-evil-leader-mode 1)
+  :config
+  (evil-leader/set-leader ",")
+  (evil-leader/set-key
+    "e" 'helm-find-files
+    "b" 'switch-to-buffer
+    "k" 'kill-buffer))
 
+#+END_SRC
+* Evil-Nerd-Commenter
+#+BEGIN_SRC emacs-lisp
+(use-package evil-nerd-commenter
+  :ensure t
+  :config
+  (global-set-key (kbd "M-;") 'evilnc-comment-or-uncomment-lines)
+  (global-set-key (kbd "C-c l") 'evilnc-quick-comment-or-uncomment-to-the-line)
+  (global-set-key (kbd "C-c c") 'evilnc-copy-and-comment-lines)
+  (global-set-key (kbd "C-c p") 'evilnc-comment-or-uncomment-paragraphs)
+
+  (evil-leader/set-key
+    "cc" 'evilnc-comment-or-uncomment-lines
+    "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
+    "ll" 'evilnc-quick-comment-or-uncomment-to-the-line
+    "cc" 'evilnc-copy-and-comment-lines
+    "cp" 'evilnc-comment-or-uncomment-paragraphs
+    "cr" 'comment-or-uncomment-region
+    "cv" 'evilnc-toggle-invert-comment-line-by-line
+    "\\" 'evilnc-comment-operator ))
+#+END_SRC
+* Company-Web
+#+BEGIN_SRC emacs-lisp
+(use-package company-web
+  :ensure t)
+#+END_SRC
 * Spaceline
 My own configurations for spaceline.
 
@@ -87,15 +125,15 @@ My own configurations for spaceline.
     (s-trim (concat vc-mode
           (when (buffer-file-name)
              (pcase (vc-state (buffer-file-name))
-                          (`up-to-date " ")
-                          (`edited " !")
-                          (`added " ")
-                          (`unregistered " ")
-                          (`removed " ")
-                          (`needs-merge " ")
-                          (`needs-update " ")
-                          (`ignored " ")
-                          (_ ""))))))
+                          (`up-to-date " ")
+                          (`edited " ")
+                          (`added " ")
+                          (`unregistered " ")
+                          (`removed " ")
+                          (`needs-merge " ")
+                          (`needs-update " ")
+                          (`ignored " ")
+                          (_ ""))))))
         :when vc-mode)
 
    :config
@@ -188,7 +226,7 @@ My own configurations for spaceline.
    :ensure t)
 #+END_SRC
 * Diminish
-
+  
 #+BEGIN_SRC emacs-lisp
 (use-package diminish
    :ensure t
@@ -221,8 +259,12 @@ My own configurations for spaceline.
    :ensure t
    :diminish company-mode
    :config
+<<<<<<< HEAD
+   (global-company-mode))
+=======
    (global-company-mode)
 )
+>>>>>>> e952c84... installed company mode
 
 #+END_SRC
 * Language specific
@@ -257,7 +299,7 @@ My own configurations for spaceline.
 (use-package yaml-mode
    :ensure t)
 #+END_SRC
-
+   
 * General Config
 ** Enable UTF-8
 
@@ -336,7 +378,37 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 *** Extra settings
 **** font
 #+BEGIN_SRC emacs-lisp
-(set-face-attribute 'default nil :font "MonacoB-11:weight=Bold")
+(set-face-attribute 'default nil :font "Fira Code:Retina")
+(if (fboundp 'mac-auto-operator-composition-mode)
+    (mac-auto-operator-composition-mode)
+(let ((alist '((33 . ".\\(?:\\(?:==\\|!!\\)\\|[!=]\\)")
+               (35 . ".\\(?:###\\|##\\|_(\\|[#(?[_{]\\)")
+               (36 . ".\\(?:>\\)")
+               (37 . ".\\(?:\\(?:%%\\)\\|%\\)")
+               (38 . ".\\(?:\\(?:&&\\)\\|&\\)")
+               (42 . ".\\(?:\\(?:\\*\\*/\\)\\|\\(?:\\*[*/]\\)\\|[*/>]\\)")
+               (43 . ".\\(?:\\(?:\\+\\+\\)\\|[+>]\\)")
+               (45 . ".\\(?:\\(?:-[>-]\\|<<\\|>>\\)\\|[<>}~-]\\)")
+               (47 . ".\\(?:\\(?:\\*\\*\\|//\\|==\\)\\|[*/=>]\\)")
+               (48 . ".\\(?:x[a-zA-Z]\\)")
+               (58 . ".\\(?:::\\|[:=]\\)")
+               (59 . ".\\(?:;;\\|;\\)")
+               (60 . ".\\(?:\\(?:!--\\)\\|\\(?:~~\\|->\\|\\$>\\|\\*>\\|\\+>\\|--\\|<[<=-]\\|=[<=>]\\||>\\)\\|[*$+~/<=>|-]\\)")
+               (61 . ".\\(?:\\(?:/=\\|:=\\|<<\\|=[=>]\\|>>\\)\\|[<=>~]\\)")
+               (62 . ".\\(?:\\(?:=>\\|>[=>-]\\)\\|[=>-]\\)")
+               (63 . ".\\(?:\\(\\?\\?\\)\\|[:=?]\\)")
+               (91 . ".\\(?:]\\)")
+               (92 . ".\\(?:\\(?:\\\\\\\\\\)\\|\\\\\\)")
+               (94 . ".\\(?:=\\)")
+               (119 . ".\\(?:ww\\)")
+               (123 . ".\\(?:-\\)")
+               (124 . ".\\(?:\\(?:|[=|]\\)\\|[=>|]\\)")
+               (126 . ".\\(?:~>\\|~~\\|[>=@~-]\\)")
+               )
+             ))
+    (dolist (char-regexp alist)
+      (set-char-table-range composition-function-table (car char-regexp)
+                            `([,(cdr char-regexp) 0 font-shape-gstring])))))
 #+END_SRC
 **** iBuffer
 #+BEGIN_SRC emacs-lisp

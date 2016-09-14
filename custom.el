@@ -12,7 +12,11 @@
  '(evil-echo-state nil)
  '(package-selected-packages
    (quote
+<<<<<<< HEAD
+    (evil-nerd-commenter company-web evil-leader company paradox yaml-mode markdown-mode haskell-mode web-mode helm magit spaceline evil sublime-themes window-numbering use-package)))
+=======
     (company paradox yaml-mode markdown-mode haskell-mode web-mode helm magit spaceline evil sublime-themes window-numbering use-package)))
+>>>>>>> e952c84... installed company mode
  '(paradox-github-token t)
  '(powerline-height 23))
 (custom-set-faces
