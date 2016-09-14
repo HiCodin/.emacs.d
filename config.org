@@ -333,17 +333,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 #+BEGIN_SRC emacs-lisp
 (blink-cursor-mode 0)
-
-;; a function for inserting new line above the cursor position
-;; shamelessly copied from Howard Abrams
-(defun my/insert-line-before (times)
-  "Insert a newline(s) above the line containing the cursor"
-  (interactive "p")
-  (save-excursion
-    (move-beginning-of-line 1)
-    (newline times)))
-
-(global-set-key (kbd "C-S-o") 'my/insert-line-before)
 #+END_SRC
 
 ** Misc
