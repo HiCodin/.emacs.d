@@ -12,9 +12,12 @@
  '(evil-echo-state nil)
  '(package-selected-packages
    (quote
-    (evil-nerd-commenter company-web evil-leader company paradox yaml-mode markdown-mode haskell-mode web-mode helm magit spaceline evil sublime-themes window-numbering use-package)))
+    (highlight-indent-guides darktooth-themes vue-mode evil-nerd-commenter company-web evil-leader company paradox yaml-mode markdown-mode haskell-mode web-mode helm magit spaceline evil sublime-themes window-numbering use-package)))
  '(paradox-github-token t)
- '(powerline-height 23))
+ '(powerline-height 23)
+ '(web-mode-enable-current-column-highlight nil)
+ '(web-mode-enable-current-element-highlight t)
+ '(web-mode-indent-style 4))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -26,9 +29,11 @@
  '(helm-selection ((t (:background "Gray25"))))
  '(helm-selection-line ((t (:inherit highlight :background "Gray25"))))
  '(helm-source-header ((t (:foreground "chocolate1" :weight normal :height 1.2 :width normal :family "Sans Serif"))))
+ '(highlight-indent-guides-even-face ((t (:foreground "#3A3A3A"))))
  '(mode-line-buffer-id ((t nil)))
  '(spaceline-modified ((t (:background "chocolate1" :foreground "White"))))
  '(spaceline-read-only ((t (:background "tomato1" :foreground "White"))))
- '(spaceline-unmodified ((t (:background "LimeGreen" :foreground "White")))))
-
+ '(spaceline-unmodified ((t (:background "LimeGreen" :foreground "White"))))
+ '(web-mode-current-column-highlight-face ((t (:background "#3e3c36" :width condensed))))
+ '(web-mode-current-element-highlight-face ((t (:foreground "orange")))))
 (setq custom-safe-themes t)
