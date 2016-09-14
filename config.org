@@ -259,12 +259,7 @@ My own configurations for spaceline.
    :ensure t
    :diminish company-mode
    :config
-<<<<<<< HEAD
    (global-company-mode))
-=======
-   (global-company-mode)
-)
->>>>>>> e952c84... installed company mode
 
 #+END_SRC
 * Language specific
