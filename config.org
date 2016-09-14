@@ -21,7 +21,7 @@
 ** Darktooth Theme
 
 #+BEGIN_SRC emacs-lisp
-( use-package darktooth-theme
+(use-package darktooth-theme
    :ensure t
    :init 
    (load-theme 'darktooth t))
@@ -70,7 +70,7 @@
   (global-set-key (kbd "C-c p") 'evilnc-comment-or-uncomment-paragraphs)
 
   (evil-leader/set-key
-    "cc" 'evilnc-comment-or-uncomment-lines
+    "ci" 'evilnc-comment-or-uncomment-lines
     "cl" 'evilnc-quick-comment-or-uncomment-to-the-line
     "ll" 'evilnc-quick-comment-or-uncomment-to-the-line
     "cc" 'evilnc-copy-and-comment-lines
