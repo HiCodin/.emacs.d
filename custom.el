@@ -12,7 +12,7 @@
  '(evil-echo-state nil)
  '(package-selected-packages
    (quote
-    (highlight-indent-guides darktooth-themes vue-mode evil-nerd-commenter company-web evil-leader company paradox yaml-mode markdown-mode haskell-mode web-mode helm magit spaceline evil sublime-themes window-numbering use-package)))
+    (emmet-mode highlight-indent-guides darktooth-themes vue-mode evil-nerd-commenter company-web evil-leader company paradox yaml-mode markdown-mode haskell-mode web-mode helm magit spaceline evil sublime-themes window-numbering use-package)))
  '(paradox-github-token t)
  '(powerline-height 23)
  '(web-mode-enable-current-column-highlight nil)
