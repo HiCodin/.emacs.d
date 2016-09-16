@@ -262,11 +262,11 @@ My own configurations for spaceline.
 
 #+BEGIN_SRC emacs-lisp
 (use-package company
-   :ensure t
-   :diminish company-mode
-   :bind ("TAB" . company-complete-common-or-cycle)
-   :config
-   (global-company-mode t)
+  :ensure t
+  :diminish company-mode
+  :bind ("TAB" . company-complete-common-or-cycle)
+  :config
+  (global-company-mode t)
   ;; Modify company so that tab and S-tab cycle through completions without
   ;; needing to hit enter.
 
@@ -365,11 +365,9 @@ My own configurations for spaceline.
   :init
   (bind-key "M-n"  'emmet-next-edit-point)
   (bind-key "M-p"  'emmet-prev-edit-point)
-  (add-hook 'sgml-mode-hook 'emmet-mode)
-  (add-hook 'html-mode-hook 'emmet-mode)
-  (add-hook 'web-mode-hook 'emmet-mode)
-  (add-hook 'css-mode-hook  'emmet-mode)
   :config
+  (add-hook 'web-mode-hook 'emmet-mode)
+  (add-hook 'vue-mode-hook 'emmet-mode)
   (setq emmet-move-cursor-between-quotes t))
 
 #+END_SRC
@@ -379,11 +377,11 @@ My own configurations for spaceline.
 #+BEGIN_SRC emacs-lisp
 (use-package web-mode
   :ensure t
+  :mode (("\\.html\\'" . web-mode)
+         ("\\.css\\'" . web-mode)
+         ("\\.php\\'" . web-mode)
+         ("\\.phtml\\'" . web-mode))
   :init
-  (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
   (setq web-mode-engines-alist
     '(("php"    . "\\.phtml\\'")
      ("blade"  . "\\.blade\\.")))
@@ -466,6 +464,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ** Misc
 *** Terminal Related
+
 #+BEGIN_SRC emacs-lisp
 (defadvice term-sentinel (around my-advice-term-sentinel (proc msg))
   (if (memq (process-status proc) '(signal exit))
@@ -488,6 +487,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
                             (setq-local global-hl-line-mode
                                         nil)))
 #+END_SRC
+
 *** Extra settings
 **** font
 #+BEGIN_SRC emacs-lisp
