@@ -51,13 +51,11 @@
 (use-package evil-leader
   :ensure t
   :init 
-  (setq evil-leader/in-all-states 1)
   (global-evil-leader-mode 1)
   :config
   (evil-leader/set-leader "," )
-  (setq evil-leader/non-normal-prefix "")
   (evil-leader/set-key
-    "," 'emmet-expand-line
+    "<SPC>" 'emmet-expand-line
     "e" 'helm-find-files
     "b" 'switch-to-buffer
     "k" 'kill-buffer))
@@ -362,6 +360,7 @@ My own configurations for spaceline.
 #+BEGIN_SRC emacs-lisp
 (use-package emmet-mode
   :ensure t
+  :diminish emmet-mode
   :init
   (bind-key "M-n"  'emmet-next-edit-point)
   (bind-key "M-p"  'emmet-prev-edit-point)
