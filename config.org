@@ -349,7 +349,6 @@ My own configurations for spaceline.
 (use-package company-web
   :ensure t
   :init
-  (require 'company)
   (require 'company-web-html)
   :config
   (setq company-tooltip-limit 20)
@@ -364,6 +363,8 @@ My own configurations for spaceline.
 (use-package emmet-mode
   :ensure t
   :init
+  (bind-key "M-n"  'emmet-next-edit-point)
+  (bind-key "M-p"  'emmet-prev-edit-point)
   (add-hook 'sgml-mode-hook 'emmet-mode)
   (add-hook 'html-mode-hook 'emmet-mode)
   (add-hook 'web-mode-hook 'emmet-mode)
