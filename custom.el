@@ -12,12 +12,12 @@
  '(evil-echo-state nil)
  '(package-selected-packages
    (quote
-    (emmet-mode highlight-indent-guides darktooth-themes vue-mode evil-nerd-commenter company-web evil-leader company paradox yaml-mode markdown-mode haskell-mode web-mode helm magit spaceline evil sublime-themes window-numbering use-package)))
+    (php-mode emmet-mode highlight-indent-guides darktooth-themes vue-mode evil-nerd-commenter company-web evil-leader company paradox yaml-mode markdown-mode haskell-mode web-mode helm magit spaceline evil sublime-themes window-numbering use-package)))
  '(paradox-github-token t)
  '(powerline-height 23)
  '(web-mode-enable-current-column-highlight nil)
- '(web-mode-enable-current-element-highlight t)
- '(web-mode-indent-style 4))
+ '(web-mode-enable-current-element-highlight t t)
+ '(web-mode-indent-style 4 t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

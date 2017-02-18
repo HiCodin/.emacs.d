@@ -1,0 +1,3 @@
+(
+ (:id "sha1:5cce342a9a99ff6632dc081a41f5f4a28e8e10fc" :fingerprint "sha1:fd:2d:22:08:cb:31:29:d7:8c:29:8f:86:d7:a1:5d:2a:bc:30:ea:d8" :host "raw.githubusercontent.com:443" :conditions (:unknown-ca :invalid))
+)
